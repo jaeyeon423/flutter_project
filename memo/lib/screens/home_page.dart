@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:memo/screens/edit_page.dart';
+import 'write_page.dart';
 
 class MyHompage extends StatefulWidget {
   MyHompage({Key key, this.title}) : super(key: key);
@@ -13,16 +13,22 @@ class _MyHomeState extends State<MyHompage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('You have pushed the button this many times.')
-          ],
-        ),
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                child: Text(
+                  '메모메모',
+                  style: TextStyle(fontSize: 36, color: Colors.blue),
+                ),
+              ),
+            ],
+          ),
+          ...LoadMemo()
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -35,4 +41,13 @@ class _MyHomeState extends State<MyHompage> {
       ),
     );
   }
+}
+
+LoadMemo() {
+  List<Widget> memolist = [];
+  memolist.add(Container(
+    color: Colors.purpleAccent,
+    height: 100,
+  ));
+  return memolist;
 }
